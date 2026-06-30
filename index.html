@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A sleek color wheel for photo safaris. Spin before you begin and photograph the city through one chosen color." />
+    <title>Color Safari Wheel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero" aria-labelledby="page-title">
+        <p class="eyebrow">Photo Safari</p>
+        <h1 id="page-title">Spin your color. Hunt the city.</h1>
+        <p class="intro">
+          A minimalist color wheel for photo walks: spin once before you begin,
+          then capture only things in the selected color.
+        </p>
+      </section>
+
+      <section class="app-grid" aria-label="Color safari wheel app">
+        <section class="stage-card" aria-label="Spin the wheel">
+          <div class="wheel-wrap">
+            <div class="pointer" aria-hidden="true"></div>
+            <button
+              id="wheelButton"
+              class="wheel-button"
+              type="button"
+              aria-label="Spin the color wheel"
+            >
+              <span id="wheel" class="wheel" aria-hidden="true"></span>
+              <span class="wheel-hub">
+                <span class="hub-title">SPIN</span>
+                <span class="hub-subtitle">before you shoot</span>
+              </span>
+            </button>
+          </div>
+
+          <div class="controls">
+            <button id="spinButton" class="button button-primary" type="button">
+              Spin the wheel
+            </button>
+            <button id="shuffleButton" class="button button-secondary" type="button">
+              Shuffle palette
+            </button>
+          </div>
+
+          <article id="resultCard" class="result-card is-empty" aria-live="polite">
+            <div class="result-swatch" id="resultSwatch" aria-hidden="true"></div>
+            <div>
+              <p class="result-label">Selected color</p>
+              <h2 id="resultName">Ready when you are</h2>
+              <p id="resultHex">Spin once to start the safari.</p>
+            </div>
+            <button id="copyButton" class="copy-button" type="button" disabled>
+              Copy hex
+            </button>
+          </article>
+        </section>
+
+        <aside class="panel" aria-labelledby="editor-title">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Palette</p>
+              <h2 id="editor-title">Edit colors</h2>
+            </div>
+            <button id="resetButton" class="text-button" type="button">Reset</button>
+          </div>
+
+          <form id="addColorForm" class="add-form" autocomplete="off">
+            <div class="field-row">
+              <label for="newColorName">Name</label>
+              <input id="newColorName" name="newColorName" type="text" placeholder="Neon sign" required />
+            </div>
+            <div class="field-grid">
+              <div class="field-row">
+                <label for="newColorHex">Hex</label>
+                <input id="newColorHex" name="newColorHex" type="text" value="#8A5CF6" maxlength="7" required />
+              </div>
+              <div class="field-row compact-field">
+                <label for="newColorPicker">Pick</label>
+                <input id="newColorPicker" name="newColorPicker" type="color" value="#8A5CF6" />
+              </div>
+            </div>
+            <button class="button button-secondary full-width" type="submit">Add color</button>
+            <p id="formMessage" class="helper" role="status"></p>
+          </form>
+
+          <div class="list-header">
+            <span>Current wheel</span>
+            <span id="colorCount">0 colors</span>
+          </div>
+          <div id="colorList" class="color-list"></div>
+        </aside>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <div id="particles" class="particles" aria-hidden="true"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
