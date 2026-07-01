@@ -3,97 +3,106 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="A sleek color wheel for photo safaris. Spin before you begin and photograph the city through one chosen color." />
+    <meta
+      name="description"
+      content="A minimalist spin-the-wheel app for color photo safaris. Spin before you begin and photograph the city through one chosen color."
+    />
     <title>Color Safari Wheel</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="shell">
-      <section class="hero" aria-labelledby="page-title">
-        <p class="eyebrow">Photo Safari</p>
-        <h1 id="page-title">Spin your color. Hunt the city.</h1>
-        <p class="intro">
-          A minimalist color wheel for photo walks: spin once before you begin,
-          then capture only things in the selected color.
-        </p>
-      </section>
+    <main class="page-shell">
+      <header class="topbar" aria-label="Color Safari introduction">
+        <div>
+          <p class="brand">Color Safari</p>
+          <p class="tagline">Spin. Shoot. See the city in color.</p>
+        </div>
+        <button class="ghost-button" id="resetButton" type="button" aria-label="Reset palette to default colors">
+          Reset palette
+        </button>
+      </header>
 
-      <section class="app-grid" aria-label="Color safari wheel app">
-        <section class="stage-card" aria-label="Spin the wheel">
-          <div class="wheel-wrap">
+      <section class="layout" aria-label="Color Safari Wheel app">
+        <section class="wheel-section" aria-labelledby="wheel-title">
+          <div class="wheel-copy">
+            <p class="kicker">Photo walk challenge</p>
+            <h1 id="wheel-title">Let chance choose what you notice.</h1>
+            <p>
+              Spin once before you begin. The winning color becomes your mission:
+              find it in architecture, signs, clothes, details, shadows, and street life.
+            </p>
+          </div>
+
+          <div class="wheel-stage">
             <div class="pointer" aria-hidden="true"></div>
-            <button
-              id="wheelButton"
-              class="wheel-button"
-              type="button"
-              aria-label="Spin the color wheel"
-            >
+            <button id="wheelButton" class="wheel-button" type="button" aria-label="Spin the color wheel">
               <span id="wheel" class="wheel" aria-hidden="true"></span>
+              <span id="wheelLabels" class="wheel-labels" aria-hidden="true"></span>
               <span class="wheel-hub">
-                <span class="hub-title">SPIN</span>
-                <span class="hub-subtitle">before you shoot</span>
+                <span>Spin</span>
               </span>
             </button>
           </div>
 
-          <div class="controls">
-            <button id="spinButton" class="button button-primary" type="button">
-              Spin the wheel
-            </button>
-            <button id="shuffleButton" class="button button-secondary" type="button">
-              Shuffle palette
-            </button>
+          <div class="spin-actions">
+            <button id="spinButton" class="primary-button" type="button">Spin the wheel</button>
+            <p class="hint">Tip: press Space when the wheel is focused.</p>
           </div>
+        </section>
 
-          <article id="resultCard" class="result-card is-empty" aria-live="polite">
-            <div class="result-swatch" id="resultSwatch" aria-hidden="true"></div>
+        <section class="result-section" aria-live="polite" aria-label="Selected color">
+          <article id="resultCard" class="result-card is-empty">
+            <p class="kicker">Your color</p>
+            <h2 id="resultName">Ready?</h2>
+            <div id="resultSwatch" class="result-swatch" aria-hidden="true"></div>
+            <label class="hex-field" for="resultHexInput">
+              <span>Hex</span>
+              <input id="resultHexInput" type="text" value="Spin to begin" readonly />
+            </label>
+            <button id="copyButton" class="secondary-button" type="button" disabled>Copy hex</button>
+          </article>
+
+          <article class="challenge-card">
+            <div class="icon-circle" aria-hidden="true">⌁</div>
             <div>
-              <p class="result-label">Selected color</p>
-              <h2 id="resultName">Ready when you are</h2>
-              <p id="resultHex">Spin once to start the safari.</p>
+              <h3>The challenge</h3>
+              <p>Photograph only things in the selected color. It does not have to be exact — mood, tone, and texture count.</p>
             </div>
-            <button id="copyButton" class="copy-button" type="button" disabled>
-              Copy hex
-            </button>
           </article>
         </section>
 
-        <aside class="panel" aria-labelledby="editor-title">
-          <div class="panel-header">
+        <aside class="editor-panel" aria-labelledby="editor-title">
+          <div class="panel-heading">
             <div>
-              <p class="eyebrow">Palette</p>
+              <p class="kicker">Palette</p>
               <h2 id="editor-title">Edit colors</h2>
             </div>
-            <button id="resetButton" class="text-button" type="button">Reset</button>
+            <button id="shuffleButton" class="icon-button" type="button" aria-label="Shuffle palette order">Shuffle</button>
           </div>
 
           <form id="addColorForm" class="add-form" autocomplete="off">
-            <div class="field-row">
-              <label for="newColorName">Name</label>
-              <input id="newColorName" name="newColorName" type="text" placeholder="Neon sign" required />
+            <p class="form-title">Add color</p>
+            <div class="add-grid">
+              <input id="newColorPicker" name="newColorPicker" class="color-picker" type="color" value="#C16A5B" aria-label="Choose new color" />
+              <input id="newColorName" name="newColorName" type="text" placeholder="Color name" aria-label="Color name" />
+              <input id="newColorHex" name="newColorHex" type="text" value="#C16A5B" maxlength="7" aria-label="Hex value" />
+              <button type="submit">Add</button>
             </div>
-            <div class="field-grid">
-              <div class="field-row">
-                <label for="newColorHex">Hex</label>
-                <input id="newColorHex" name="newColorHex" type="text" value="#8A5CF6" maxlength="7" required />
-              </div>
-              <div class="field-row compact-field">
-                <label for="newColorPicker">Pick</label>
-                <input id="newColorPicker" name="newColorPicker" type="color" value="#8A5CF6" />
-              </div>
-            </div>
-            <button class="button button-secondary full-width" type="submit">Add color</button>
             <p id="formMessage" class="helper" role="status"></p>
           </form>
 
-          <div class="list-header">
-            <span>Current wheel</span>
+          <div class="color-list-header">
+            <span>Your colors</span>
             <span id="colorCount">0 colors</span>
           </div>
           <div id="colorList" class="color-list"></div>
+          <p class="panel-note">Remove colors with ×. You need at least two colors on the wheel.</p>
         </aside>
       </section>
     </main>
