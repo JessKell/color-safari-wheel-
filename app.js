@@ -16,7 +16,6 @@ const els = {
   wheel: document.querySelector("#wheel"),
   wheelLabels: document.querySelector("#wheelLabels"),
   wheelButton: document.querySelector("#wheelButton"),
-  spinButton: document.querySelector("#spinButton"),
   shuffleButton: document.querySelector("#shuffleButton"),
   resetButton: document.querySelector("#resetButton"),
   resultCard: document.querySelector("#resultCard"),
@@ -257,7 +256,6 @@ function spin() {
 }
 
 function setControlsDisabled(disabled) {
-  els.spinButton.disabled = disabled;
   els.wheelButton.disabled = disabled;
   els.shuffleButton.disabled = disabled;
   els.resetButton.disabled = disabled;
@@ -353,7 +351,6 @@ function escapeAttribute(value) {
 }
 
 els.wheelButton.addEventListener("click", spin);
-els.spinButton.addEventListener("click", spin);
 els.shuffleButton.addEventListener("click", shufflePalette);
 els.resetButton.addEventListener("click", resetPalette);
 els.copyButton.addEventListener("click", copyHex);
