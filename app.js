@@ -231,7 +231,10 @@ function spin() {
   const winnerIndex = Math.floor(Math.random() * colors.length);
   const slice = 360 / colors.length;
   const winnerCenter = winnerIndex * slice + slice / 2;
-  const pointerAngle = 270; // CSS conic-gradient starts at 3 o'clock; pointer is visually at 12 o'clock.
+  // CSS conic gradients start at 12 o'clock by default, which is exactly
+  // where the fixed pointer sits. Rotate the chosen slice center to 0deg
+  // so the visual wheel and the result card always match.
+  const pointerAngle = 0;
   const targetModulo = pointerAngle - winnerCenter;
   const normalizedCurrent = ((currentRotation % 360) + 360) % 360;
   const normalizedTarget = ((targetModulo % 360) + 360) % 360;

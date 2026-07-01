@@ -300,7 +300,6 @@ button:disabled {
 }
 
 .result-card,
-.challenge-card,
 .editor-panel {
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
@@ -358,36 +357,6 @@ button:disabled {
   padding: 15px 20px;
   background: transparent;
   font-weight: 700;
-}
-
-.challenge-card {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  padding: 22px;
-}
-
-.icon-circle {
-  flex: 0 0 auto;
-  width: 46px;
-  height: 46px;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--line-strong);
-  border-radius: 50%;
-  color: #6f6a63;
-  font-size: 1.35rem;
-}
-
-.challenge-card h3 {
-  margin: 0 0 7px;
-  font-size: 0.98rem;
-}
-
-.challenge-card p {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.55;
 }
 
 .editor-panel {
@@ -655,7 +624,6 @@ button:disabled {
   }
 
   .result-card,
-  .challenge-card,
   .editor-panel {
     border-radius: 22px;
   }
